@@ -1,0 +1,17 @@
+// /*     Mixins and helpers     */
+$map-for-breakpoints: (
+    "tablet": 768px,
+    "largeDesktop": 1200px,
+) !default;
+
+@mixin mq($breakpoint) {
+    @if $breakpoint == tablet {
+        @media (min-width: map-get($map-for-breakpoints, tablet)) {
+            @content;
+        } //768
+    } @else if $breakpoint == largeDesktop {
+        @media (min-width: map-get($map-for-breakpoints, largeDesktop)) {
+            @content;
+        } //1200
+    }
+}

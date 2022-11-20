@@ -1,0 +1,96 @@
+$primary-color: #5000ff;
+$secondary-color: #434343;
+$button-color: #eee;
+
+@mixin set-state-color-properties($color,$properties...) {
+	&:hover {
+		@each $property in $properties {
+			#{$property}: darken($color, 10%);
+		}
+	}
+	&:focus {
+		@each $property in $properties {
+			#{$property}: darken($color, 15%);
+		}
+	}
+	&:active {
+		@each $property in $properties {
+			#{$property}: darken($color, 20%);
+		}
+	}
+}
+
+.button {
+	$_this-color: $button-color;
+	$_focus-fx-color: $primary-color;
+
+	appearance: none;
+	vertical-align: middle;
+	user-select: none;
+	cursor: pointer;
+	font-weight: 600;
+	font-size: 1em;
+	padding: 0.5em 0.75em;
+	border-radius: 0.25em;
+	letter-spacing: 1px;
+	background-color: $_this-color;
+	border: 2px inside $_this-color;
+	border: none;
+	font-family: inherit;
+	transform: translate3d(0, 0, 0);
+	transition: all 150ms ease;
+
+	outline: 2px solid $_this-color;
+	outline-offset: -2px;
+	display: block;
+	width: 100%;
+	margin: 5px;
+	line-height: 1;
+	vertical-align: middle;
+	height: 2.25em;
+    color: black;
+
+
+	@media screen and (min-width: 560px) {
+		display: inline-block;
+		width: unset;
+		min-width: 6.5em;
+	}
+
+	$adjusted-properties: "border-color", "background-color";
+	@include set-state-color-properties(
+		$button-color,
+		"border-color",
+		"background-color"
+	);
+
+	&:focus {
+		outline-color: $primary-color !important;
+		outline-offset: -2px;
+		box-shadow: 0 0 1px 4px rgba($primary-color, 0.25);
+	}
+	&:active {
+		transform: translate3d(0, 2px, 0);
+	}
+
+	&.primary {
+		background-color: $primary-color;
+		outline-color: $primary-color;
+		color: white;
+		@include set-state-color-properties(
+			$primary-color,
+			"outline-color",
+			"background-color"
+		);
+	}
+	&.secondary {
+		background-color: $secondary-color;
+		outline-color: $secondary-color;
+		color: white;
+		@include set-state-color-properties(
+			$secondary-color,
+			"outline-color",
+			"background-color"
+		);
+	}
+}
