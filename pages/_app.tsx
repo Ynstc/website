@@ -1,13 +1,30 @@
 import "../styles/globals.scss";
-import type { AppProps } from "next/app";
 import Layout from "../components/layout";
+import { AppState, Provider } from '../state/AppState';
+import { Auth } from '../firebase/auth';
+import { CustomAppProps } from "../helpers/generalInterfaces";
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
-  );
+
+const INITIAL_STATE = new AppState();
+
+function MyApp({ Component, pageProps }: CustomAppProps) {
+    return (
+        <Provider value={INITIAL_STATE}>
+            {Component.auth ? (
+                <Auth>
+                    <Layout>
+                        <Component {...pageProps} />
+                    </Layout>
+                </Auth>
+            ) : (
+                <Layout>
+                    <Component {...pageProps} />
+                </Layout>
+            )}
+        </Provider>
+    );
 }
 
 export default MyApp;
+
+

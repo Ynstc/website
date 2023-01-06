@@ -1,11 +1,13 @@
-import type { NextPage } from "next";
+import { NextPageWithAuth } from "../helpers/generalInterfaces";
 
-const Playground: NextPage = () => {
+const Playground: NextPageWithAuth = () => {
     return (
         <div>
             /TODO playground
         </div>
     );
 };
+
+Playground.auth = {auth: false};
 
 export default Playground;
