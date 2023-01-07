@@ -16,6 +16,6 @@ const Home: NextPageWithAuth = () => {
     );
 };
 
-Home.auth = {auth: false};
+Home.auth = { authorized: false };
 
 export default Home;

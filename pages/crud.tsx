@@ -8,6 +8,6 @@ const Crud: NextPageWithAuth = () => {
     );
 };
 
-Crud.auth = {auth: true};
+Crud.auth = {authorized: true};
 
 export default Crud;

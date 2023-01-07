@@ -7,12 +7,12 @@ type PageAuth = {
     // role: string
     // loading: JSX.Element
     // unauthorized: string
-    auth: boolean
+    authorized: boolean
 };
 
 // component basic init properties
 export type CustomAppProps = AppProps & {
-    Component: NextComponentType & PageAuth
+    Component: NextComponentType & { auth?: PageAuth }
 }
 
 // component properties

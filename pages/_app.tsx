@@ -7,10 +7,11 @@ import { CustomAppProps } from "../helpers/generalInterfaces";
 
 const INITIAL_STATE = new AppState();
 
-function MyApp({ Component, pageProps }: CustomAppProps) {
+export default function MyApp({ Component, pageProps }: CustomAppProps) {
+
     return (
         <Provider value={INITIAL_STATE}>
-            {Component.auth ? (
+            {Component.auth?.authorized === true ? (
                 <Auth>
                     <Layout>
                         <Component {...pageProps} />
@@ -24,7 +25,3 @@ function MyApp({ Component, pageProps }: CustomAppProps) {
         </Provider>
     );
 }
-
-export default MyApp;
-
-

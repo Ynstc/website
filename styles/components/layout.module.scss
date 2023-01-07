@@ -1,5 +1,13 @@
+@import "./../configuration/mixins";
+
 .main {
-    height: calc(100vh - 100px);
-    max-width: 740px;
-    margin: auto;
+    &__container {
+        min-height: calc(100vh - 50px);
+        padding: 84px 20px 40px;
+
+        @include mq(tablet) {
+            margin: 0 auto;
+            max-width: 740px;
+        }
+    }
 }

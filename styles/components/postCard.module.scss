@@ -1,0 +1,35 @@
+@import "./../configuration/mixins";
+@import "./../configuration/variables";
+
+.postCard {
+    border-bottom: 1px $bg-color-secondary solid;;
+    margin-top: 15px;
+    padding-bottom: 15px;
+
+    &__container {
+        display: flex;
+    }
+
+    &__description__container {
+        flex: 2 1 0;
+    }
+
+    &__postDate {
+        color: $opacity-black-50;
+        margin-bottom: 5px;
+    }
+
+    &__title {
+        padding: 0 20px 20px 0;
+        margin: 0;
+    }
+
+    &__excerpt {
+        padding: 0 20px 0 0;
+        margin: 0;
+    }
+    &__thumbnail {
+        width: 160px;
+        height: 112px;
+    }
+}

@@ -29,6 +29,6 @@ const Dashboard: NextPageWithAuth = () => {
     );
 };
 
-Dashboard.auth = { auth: false };
+Dashboard.auth = { authorized: true };
 
 export default Dashboard;

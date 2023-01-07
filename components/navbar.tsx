@@ -1,16 +1,16 @@
-import { Suspense } from 'react';
+import { Suspense, useState } from 'react';
 import Head from "next/head";
-import Link from 'next/link';
-import styles from 'styles/components/navbar.module.scss';
-import Button from './button';
+import cx from "classnames";
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useRouter } from "next/router";
+import Button from './button';
+import { NavLink } from './navlink';
+import styles from 'styles/components/navbar.module.scss';
 import { useAppStateContext } from "../state/AppState";
 
 const Navbar = () => {
     const { userAuthentication } = useAppStateContext();
     const [user, loading] = useAuthState(userAuthentication.auth)
-    const router = useRouter()
+    const [menuOpen, setMenuOpen] = useState<boolean>(false)
 
     const signIn = async () => {
         await userAuthentication.signIn()
@@ -20,40 +20,50 @@ const Navbar = () => {
         await userAuthentication.signOut()
     }
 
+    const toggleMenuOpen = () => {
+        setMenuOpen(!menuOpen)
+    }
+
     return (
-        <div>
+        <>
             <Head>
                 <title>Ernest&apos;s playground</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <nav className={styles.navbar}>
-                <ul className={styles.list}>
-                    <li className={styles.list__item}>
-                        <Link href="/">Home</Link>
-                    </li>
-                    <li className={styles.list__item}>
-                        <Link href="/playground">Playground</Link>
-                    </li>
-                    <li className={styles.list__item}>
-                        <Link href="/blog">Blog Post</Link>
-                    </li>
-                    <li className={styles.list__item}>
-                        <Link href="/crud">CRUD</Link>
-                    </li>
-                </ul>
-                <div className="account">
-                    <Suspense fallback="Loading charts...">
-                        <Link href="/dashboard">
+            <section className={styles.navbar}>
+                <nav className={`${styles.navbar__bar}  ${menuOpen ? styles.open : ''}`}>
+                    <div className={cx(styles.navbar__overlay, { [styles.open]: menuOpen })} onClick={toggleMenuOpen}></div>
+                    <button type="button" className={styles.navbar__burger} onClick={toggleMenuOpen}>
+                        <span className="material-icons">menu</span>
+                    </button>
+                    <h1 className={styles.navbar__title}>Do your job.</h1>
+                    <nav className={cx(styles.navbar__menu, { [styles.open]: menuOpen })} >
+                        <NavLink activeClassName={styles.active} href="/">
+                            <button className={styles.navbar__button}>Home</button>
+                        </NavLink>
+                        <NavLink activeClassName={styles.active} href="/blog">
+                            <button className={styles.navbar__button}>Blog Post</button>
+                        </NavLink>
+                        {user === null || user === undefined ?
+                            null : (<>
+                                <NavLink activeClassName={styles.active} href="/crud">
+                                    <button className={styles.navbar__button}>CRUD</button>
+                                </NavLink>
+                                <NavLink activeClassName={styles.active} href="/dashboard">
+                                    <button className={styles.navbar__button}>Dashboard</button>
+                                </NavLink>
+                            </>)
+                        }
+                        <Suspense fallback="Loading charts...">
                             {user
                                 ? <Button onClick={signOut} className='secondary'>Sign out</Button>
                                 : <Button onClick={signIn} className='primary'>Sign In</Button>
                             }
-                        </Link>
-                    </Suspense>
-
-                </div>
-            </nav>
-        </div>
+                        </Suspense>
+                    </nav>
+                </nav>
+            </section>
+        </>
     );
 };
 
