@@ -1,22 +1,28 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { marked } from 'marked'
-import styles from '/Users/ernestkost/Desktop/projekty/moje/ernest_site/styles/components/slugBlog.module.scss'
 import Image from 'next/image'
+import { remark } from 'remark';
+import { remarkExtendedTable, extendedTableHandlers } from 'remark-extended-table';
+import remarkRehype from 'remark-rehype';
+import remarkParse from 'remark-parse';
+import rehypeStringify from 'rehype-stringify';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight'
+import styles from '/Users/ernestkost/Desktop/projekty/moje/ernest_site/styles/slugBlog.module.scss'
 
 export interface PostPageProps {
     frontmatter: { title: string, date: string, cover_image: string, excerpt?: string },
     slug: string,
-    content: string,
-
+    contentHtml: string
 }
 
 export default function PostPage({
     frontmatter: { title, date, cover_image },
     slug,
-    content,
+    contentHtml
 }: PostPageProps) {
+
     return (
         <>
             <div>
@@ -24,7 +30,7 @@ export default function PostPage({
                 <h1>{title}</h1>
                 <div>
 
-                <Image className={styles.slugpost__thumbnail}
+                    <Image className={styles.slugpost__thumbnail}
                         src={cover_image}
                         alt={title}
                         width={828}
@@ -32,7 +38,7 @@ export default function PostPage({
                     />
                 </div>
                 <div>
-                    <div dangerouslySetInnerHTML={{ __html: marked(content) }}></div>
+                    <div dangerouslySetInnerHTML={{ __html: contentHtml }}></div>
                 </div>
             </div>
         </>
@@ -70,11 +76,24 @@ export async function getStaticProps({ params: { slug } }: GetStaticPropsType) {
 
     const { data: frontmatter, content } = matter(markdownWithMeta)
 
+
+    // Use remark to convert markdown into HTML string
+    const processedContent = await remark()
+        .use(remarkParse)
+        .use(remarkGfm)
+        .use(remarkExtendedTable)
+        .use(remarkRehype, null, { handlers: Object.assign({}, extendedTableHandlers) })
+        .use(rehypeHighlight)
+        .use(rehypeStringify)
+        .process(content);
+
+    const contentHtml = processedContent.toString();
+
     return {
         props: {
             frontmatter,
             slug,
-            content,
+            contentHtml
         },
     }
 }

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
-import PostCard from '../../components/postCard'
+import PostItemList from '../../components/postItemList'
 import { sortByDate } from '../../helpers'
 import { PostPageProps } from './[slug]'
 
@@ -19,7 +19,7 @@ export default function Blog({ posts }: BlogProps) {
 
             <div className='posts'>
                 {posts.map((post, index) => (
-                    <PostCard key={index} post={post} />
+                    <PostItemList key={index} post={post} />
                 ))}
             </div>
         </div>

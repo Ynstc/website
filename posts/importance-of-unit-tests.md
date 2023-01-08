@@ -17,7 +17,7 @@ To write a unit test in JavaScript, you'll first need to decide what piece of co
 
 Here's an example using the Jest testing framework:
 
-```javascript
+```js
 const add = require('./add');
 
 test('adds 1 + 2 to equal 3', () => {

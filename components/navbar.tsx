@@ -14,6 +14,7 @@ const Navbar = () => {
 
     const signIn = async () => {
         await userAuthentication.signIn()
+        closeMenu()
     }
 
     const signOut = async () => {
@@ -22,6 +23,10 @@ const Navbar = () => {
 
     const toggleMenuOpen = () => {
         setMenuOpen(!menuOpen)
+    }
+
+    const closeMenu = () => {
+        setMenuOpen(false)
     }
 
     return (
@@ -38,18 +43,18 @@ const Navbar = () => {
                     </button>
                     <h1 className={styles.navbar__title}>Do your job.</h1>
                     <nav className={cx(styles.navbar__menu, { [styles.open]: menuOpen })} >
-                        <NavLink activeClassName={styles.active} href="/">
+                        <NavLink activeClassName={styles.active} href="/" onClick={closeMenu}>
                             <button className={styles.navbar__button}>Home</button>
                         </NavLink>
-                        <NavLink activeClassName={styles.active} href="/blog">
+                        <NavLink activeClassName={styles.active} href="/blog" onClick={closeMenu}>
                             <button className={styles.navbar__button}>Blog Post</button>
                         </NavLink>
                         {user === null || user === undefined ?
                             null : (<>
-                                <NavLink activeClassName={styles.active} href="/crud">
+                                <NavLink activeClassName={styles.active} href="/crud" onClick={closeMenu}>
                                     <button className={styles.navbar__button}>CRUD</button>
                                 </NavLink>
-                                <NavLink activeClassName={styles.active} href="/dashboard">
+                                <NavLink activeClassName={styles.active} href="/dashboard" onClick={closeMenu}>
                                     <button className={styles.navbar__button}>Dashboard</button>
                                 </NavLink>
                             </>)

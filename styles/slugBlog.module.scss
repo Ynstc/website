@@ -1,0 +1,12 @@
+@import "./configuration/mixins";
+@import "./configuration/variables";
+
+.slugpost {
+
+    &__thumbnail {
+        display: block;
+        max-width: 828px;
+        max-height: 460px;
+        height: auto;
+    }
+}
