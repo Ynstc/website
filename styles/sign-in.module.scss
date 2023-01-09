@@ -1,0 +1,25 @@
+@import "./configuration/variables";
+
+.signIn {
+    max-width: 350px;
+    margin: auto;
+    background: black;
+    padding: 20px;
+    border-radius: 5px;
+
+    &__label {
+        color: $shaded-white !important;
+    }
+
+    &__anchor {
+        color: $shaded-white !important;
+    }
+
+    &__button {
+        color: $text-color-primary !important;
+    }
+
+    &__message {
+        color: $shaded-white !important;
+    }
+}

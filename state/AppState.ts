@@ -1,5 +1,4 @@
 import React from 'react';
-import {UserAuthentication} from './UserAuthentication'
 
 
 interface CreateContextResult<T> {
@@ -41,9 +40,8 @@ export const useAppStateContext = (): AppState => {
 
 export class AppState {
 
-    public readonly userAuthentication:UserAuthentication;
 
-    public constructor(){
-        this.userAuthentication = new UserAuthentication();
+    public constructor() {
+        console.log('appState stated')
     }
 }
