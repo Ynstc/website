@@ -1,0 +1,26 @@
+@import './../configuration/variables';
+
+.input {
+    background-color: input-background-color;
+    border-radius: 4px;
+    padding: 10px 15px;
+    border-width: 1px;
+    border-color: $input-border-color;
+    border-style: solid;
+    width: 100%;
+    outline: none;
+    font-size: 14px;
+
+    &:hover {
+        border-color: $input-border-color-active;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 100ms;
+    }
+    &:active {
+        border-color: $input-border-color-active;
+    }
+    &::placeholder {
+        color: $input-placeholder-color;
+        opacity: 1; /* Firefox */
+      }
+}

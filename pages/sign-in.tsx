@@ -1,20 +1,14 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { useSessionContext } from '@supabase/auth-helpers-react'
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import { useSessionContext, useSupabaseClient } from '@supabase/auth-helpers-react'
 import { NextPageWithAuth } from "../helpers/generalInterfaces";
 import styles from 'styles/sign-in.module.scss';
 
 const SignIn: NextPageWithAuth = () => {
-    const session = useSession()
     const supabase = useSupabaseClient()
     const router = useRouter();
     const sessionContext = useSessionContext()
-
-    const signOut = async () => {
-        supabase.auth.signOut()
-    }
 
     useEffect(() => {
         if (!!sessionContext.session) router.push({
