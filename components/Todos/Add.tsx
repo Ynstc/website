@@ -3,7 +3,8 @@ import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { useUser, useSupabaseClient, User } from '@supabase/auth-helpers-react'
 
-import Input from 'components/input';
+import Input from 'components/ui/input';
+
 
 const AddTodo = () => {
     const [currentItem, setCurrentItem] = useState<string>("");

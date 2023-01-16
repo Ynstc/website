@@ -1,10 +1,11 @@
 import { Suspense, useState } from 'react';
 import Head from "next/head";
 import cx from "classnames";
-import Button from './button';
+import Button from '../ui/button';
 import { NavLink } from './navlink';
 import styles from 'styles/components/navbar.module.scss';
 import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
@@ -30,7 +31,7 @@ const Navbar = () => {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
             <section className={styles.navbar}>
-                <nav className={cx(styles.navbar__bar,  { [styles.open]: menuOpen })}>
+                <nav className={cx(styles.navbar__bar, { [styles.open]: menuOpen })}>
                     <div className={cx(styles.navbar__overlay, { [styles.open]: menuOpen })} onClick={toggleMenuOpen}></div>
                     <button type="button" className={styles.navbar__burger} onClick={toggleMenuOpen}>
                         <span className="material-icons">menu</span>
@@ -48,17 +49,16 @@ const Navbar = () => {
                                 <NavLink activeClassName={styles.active} href="/crud" onClick={closeMenu}>
                                     <button className={styles.navbar__button}>CRUD</button>
                                 </NavLink>
-                                <NavLink activeClassName={styles.active} href="/dashboard" onClick={closeMenu}>
-                                    <button className={styles.navbar__button}>Dashboard</button>
-                                </NavLink>
                             </>)
                         }
                         <Suspense fallback="Loading charts...">
                             {session
                                 ? <Button onClick={signOut} className='secondary'>Sign out</Button>
-                                : (<NavLink activeClassName={styles.active} href="/sign-in" onClick={closeMenu}>
-                                <Button className='primary'>Sign In</Button>
-                            </NavLink>)
+                                : (
+                                    <NavLink activeClassName={styles.active} href="/sign-in" onClick={closeMenu}>
+                                        <Button className='primary'>Sign In</Button>
+                                    </NavLink>
+                                )
                                 // :
                             }
                         </Suspense>

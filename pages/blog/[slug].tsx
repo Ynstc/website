@@ -11,6 +11,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight'
 import styles from '/Users/ernestkost/Desktop/projekty/moje/ernest_site/styles/slugBlog.module.scss'
 
+
 export interface PostPageProps {
     frontmatter: { title: string, date: string, cover_image: string, excerpt?: string },
     slug: string,

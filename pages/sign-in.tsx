@@ -5,6 +5,7 @@ import { useSessionContext, useSupabaseClient } from '@supabase/auth-helpers-rea
 import { NextPageWithAuth } from "../helpers/generalInterfaces";
 import styles from 'styles/sign-in.module.scss';
 
+
 const SignIn: NextPageWithAuth = () => {
     const supabase = useSupabaseClient()
     const router = useRouter();

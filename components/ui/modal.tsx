@@ -2,6 +2,7 @@ import cx from "classnames";
 
 import styles from 'styles/components/modal.module.scss';
 
+
 type PropsType = React.PropsWithChildren & {
     isModalOpen: boolean;
     setModalOpen: () => void;

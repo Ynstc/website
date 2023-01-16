@@ -2,9 +2,10 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
-import PostItemList from '../../components/postItemList'
-import { sortByDate } from '../../helpers'
+import PostBlogList from 'components/postBlogList'
+import { sortByDate } from 'helpers'
 import { PostPageProps } from './[slug]'
+
 
 interface BlogProps {
     posts: Array<PostPageProps>
@@ -19,7 +20,7 @@ export default function Blog({ posts }: BlogProps) {
 
             <div className='posts'>
                 {posts.map((post, index) => (
-                    <PostItemList key={index} post={post} />
+                    <PostBlogList key={index} post={post} />
                 ))}
             </div>
         </div>

@@ -2,7 +2,6 @@ import { NextPageWithAuth } from "../helpers/generalInterfaces";
 import styles from '../styles/Index.module.scss';
 
 
-
 const Home: NextPageWithAuth = () => {
 
     return (

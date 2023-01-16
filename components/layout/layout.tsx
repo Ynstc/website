@@ -1,8 +1,9 @@
 import { Toaster } from "react-hot-toast";
 
-import Footer from "components/footer";
-import Navbar from "components/navbar";
+import Footer from "components/layout/footer";
+import Navbar from "components/layout/navbar";
 import styles from 'styles/components/layout.module.scss';
+
 
 const Layout = ({ children }: any) => {
     return (

@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
-import Input from 'components/input';
+import Input from 'components/ui/input';
 
 interface PropTypes {
     todo: {

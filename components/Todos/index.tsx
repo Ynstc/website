@@ -8,9 +8,11 @@ import toast from "react-hot-toast";
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { AiTwotoneDelete, AiOutlineForm } from 'react-icons/ai';
 
-import UpdateTodo from "components/Todos/UpdateTodo";
-import Modal from "components/Modal";
+import UpdateTodo from "components/todos/UpdateTodo";
+import Modal from "components/modal";
+import Loader from "components/loader";
 import style from 'styles/components/todos.module.scss';
+
 
 const Todos = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -61,12 +63,6 @@ const Todos = () => {
         }
     );
 
-    if (isLoading) {
-        return (
-            <div>Loading</div>
-        );
-    }
-
     const handleUpdateModalClose = () => {
         setIsOpen(!isOpen);
     };
@@ -82,32 +78,36 @@ const Todos = () => {
 
     return (
         <>
-            <div className={style.todoList}>
-                {
-                    data ? data.map((todo: any) => (
-                        <div key={todo.id} className={style.todoList__item}>
-                            <span className={style.todoList__itemName}>{todo.name}</span>
-                            <AiTwotoneDelete
-                                className={style.todoList__trashIcon}
-                                onClick={() => onDeleteItemClick(todo.id)}
-                            />
-                            <AiOutlineForm
-                                className={style.todoList__editIcon}
-                                onClick={() => onItemClick(todo)}
-                            />
-                        </div>
-                    )) : null
-                }
-            </div>
-            <Modal
-                setModalOpen={handleUpdateModalClose}
-                isModalOpen={isOpen}
-            >
-                {selectedItem === undefined ? null : <UpdateTodo
-                    todo={selectedItem}
-                    onClose={handleUpdateModalClose}
-                />}
-            </Modal>
+            {isLoading ? <Loader /> :
+                <>
+                    <div className={style.todoList}>
+                        {
+                            data ? data.map((todo: any) => (
+                                <div key={todo.id} className={style.todoList__item}>
+                                    <span className={style.todoList__itemName}>{todo.name}</span>
+                                    <AiTwotoneDelete
+                                        className={style.todoList__trashIcon}
+                                        onClick={() => onDeleteItemClick(todo.id)}
+                                    />
+                                    <AiOutlineForm
+                                        className={style.todoList__editIcon}
+                                        onClick={() => onItemClick(todo)}
+                                    />
+                                </div>
+                            )) : null
+                        }
+                    </div>
+                    <Modal
+                        setModalOpen={handleUpdateModalClose}
+                        isModalOpen={isOpen}
+                    >
+                        {selectedItem === undefined ? null : <UpdateTodo
+                            todo={selectedItem}
+                            onClose={handleUpdateModalClose}
+                        />}
+                    </Modal>
+                </>
+            }
         </>
     );
 };

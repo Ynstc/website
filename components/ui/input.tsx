@@ -1,6 +1,7 @@
 import { ChangeEvent, KeyboardEvent } from 'react';
 import styles from 'styles/components/input.module.scss';
 
+
 interface PropsType {
     value: string
     placeholder: string
