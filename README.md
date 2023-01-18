@@ -23,3 +23,19 @@ To learn more about Next.js, take a look at the following resources:
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
+
+
+## Supabase
+
+1. Database types
+
+    In order to generate types follow those instructions:
+
+https://supabase.com/docs/guides/api/generating-types
+
+- Personal access `token` can be generated from Your-organization > Account >> AccessToken
+
+- `ProjectID` is in General>Project Settings>>Reference ID
+modified command adjusted to our project is :
+
+        npx supabase gen types typescript --project-id "PROJECT_ID" --schema public > helpers/database.types.ts
