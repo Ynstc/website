@@ -7,19 +7,19 @@
     padding: 20px;
     border-radius: 5px;
 
-    &__label {
+    .label {
         color: $shaded-white !important;
     }
 
-    &__anchor {
+    .anchor {
         color: $shaded-white !important;
     }
 
-    &__button {
+    .button {
         color: $text-color-primary !important;
     }
 
-    &__message {
+    .message {
         color: $shaded-white !important;
     }
 }

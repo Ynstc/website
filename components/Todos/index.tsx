@@ -9,8 +9,8 @@ import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { AiTwotoneDelete, AiOutlineForm } from 'react-icons/ai';
 
 import UpdateTodo from "components/todos/UpdateTodo";
-import Modal from "components/modal";
-import Loader from "components/loader";
+import Modal from "components/ui/modal";
+import Loader from "components/ui/loader";
 import style from 'styles/components/todos.module.scss';
 
 
@@ -86,11 +86,11 @@ const Todos = () => {
                                 <div key={todo.id} className={style.todoList__item}>
                                     <span className={style.todoList__itemName}>{todo.name}</span>
                                     <AiTwotoneDelete
-                                        className={style.todoList__trashIcon}
+                                        className={style.trashIcon}
                                         onClick={() => onDeleteItemClick(todo.id)}
                                     />
                                     <AiOutlineForm
-                                        className={style.todoList__editIcon}
+                                        className={style.editIcon}
                                         onClick={() => onItemClick(todo)}
                                     />
                                 </div>

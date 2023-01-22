@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { AvatarState } from 'state/avatarState'
 
 interface CreateContextResult<T> {
     AppContext: React.Context<T>,
@@ -39,9 +39,9 @@ export const useAppStateContext = (): AppState => {
 
 
 export class AppState {
-
+    public readonly avatarState: AvatarState;
 
     public constructor() {
-        console.log('appState stated')
+        this.avatarState = new AvatarState();
     }
 }

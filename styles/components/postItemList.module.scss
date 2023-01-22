@@ -6,17 +6,17 @@
     margin-top: 15px;
     padding-bottom: 15px;
 
+    &__postDate {
+        color: $opacity-black-50;
+        margin-bottom: 5px;
+    }
+
     &__container {
         display: flex;
     }
 
     &__description__container {
         flex: 2 1 0;
-    }
-
-    &__postDate {
-        color: $opacity-black-50;
-        margin-bottom: 5px;
     }
 
     &__title {

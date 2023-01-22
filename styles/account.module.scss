@@ -1,0 +1,61 @@
+@import "./configuration/mixins";
+@import "./configuration/variables";
+
+.account {
+    position: relative;
+
+    .background {
+        background-color: green;
+        border-radius: 10px;
+        min-height: 200px;
+        margin-bottom: 40px;
+        width: 100%;
+
+        @include mq(mobile) {
+            min-height: 300px;
+        }
+        @include mq(tablet) {
+            min-height: 350px;
+        }
+    }
+
+    .input__wrapper {
+        margin: 10px 0;
+    }
+
+    .textarea {
+        border-radius: 5px;
+
+        background-color: input-background-color;
+        border-radius: 4px;
+        padding: 10px 15px;
+        border-width: 1px;
+        border-color: $input-border-color;
+        border-style: solid;
+        width: 100%;
+        outline: none;
+        font-size: 14px;
+
+        &:hover {
+            border-color: $input-border-color-active;
+            transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+            transition-duration: 100ms;
+        }
+        &:active {
+            border-color: $input-border-color-active;
+        }
+        &::placeholder {
+            color: $input-placeholder-color;
+            opacity: 1; /* Firefox */
+        }
+    }
+
+    .button__wrapper {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .button__submit {
+        margin-right: 0;
+    }
+}

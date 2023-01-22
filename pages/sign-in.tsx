@@ -24,10 +24,10 @@ const SignIn: NextPageWithAuth = () => {
                 appearance={{
                     theme: ThemeSupa,
                     className: {
-                        label: styles.signIn__label,
-                        anchor: styles.signIn__anchor,
-                        button: styles.signIn__button,
-                        message: styles.signIn__message
+                        label: styles.label,
+                        anchor: styles.anchor,
+                        button: styles.button,
+                        message: styles.message
                     }
                 }}
                 providers={['google', 'github']}

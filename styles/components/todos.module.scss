@@ -1,4 +1,4 @@
-@import './../configuration/variables';
+@import "./../configuration/variables";
 @import "./../configuration/mixins";
 
 .todoList {
@@ -21,19 +21,19 @@
     &__item {
         align-items: center;
         display: flex;
-
     }
 
     &__itemName {
-        padding: 10px;
         flex: 1 1 auto;
+        padding: 10px;
     }
 
-    &__trashIcon, &__editIcon {
+    .trashIcon,
+    .editIcon {
         cursor: pointer;
+        height: 30px;
+        margin: 10px;
         padding: 5px;
-    margin: 10px;
-    width: 30px;
-    height: 30px;
+        width: 30px;
     }
 }

@@ -1,20 +1,18 @@
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
+import { useSession } from '@supabase/auth-helpers-react';
 import Head from "next/head";
 import cx from "classnames";
-import Button from '../ui/button';
-import { NavLink } from './navlink';
+
+import { NavLink } from 'components/layout/navlink';
 import styles from 'styles/components/navbar.module.scss';
-import { useSession, useSupabaseClient } from '@supabase/auth-helpers-react'
+import Login from 'components/layout/login'
+
+
 
 
 const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
-    const supabase = useSupabaseClient()
     const session = useSession()
-
-    const signOut = async () => {
-        supabase.auth.signOut()
-    }
 
     const toggleMenuOpen = () => {
         setMenuOpen(!menuOpen)
@@ -51,17 +49,9 @@ const Navbar = () => {
                                 </NavLink>
                             </>)
                         }
-                        <Suspense fallback="Loading charts...">
-                            {session
-                                ? <Button onClick={signOut} className='secondary'>Sign out</Button>
-                                : (
-                                    <NavLink activeClassName={styles.active} href="/sign-in" onClick={closeMenu}>
-                                        <Button className='primary'>Sign In</Button>
-                                    </NavLink>
-                                )
-                                // :
-                            }
-                        </Suspense>
+                        <Login
+                            closeMenu={closeMenu}
+                        />
                     </nav>
                 </nav>
             </section>

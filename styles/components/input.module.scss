@@ -1,4 +1,4 @@
-@import './../configuration/variables';
+@import "./../configuration/variables";
 
 .input {
     background-color: input-background-color;
@@ -11,6 +11,12 @@
     outline: none;
     font-size: 14px;
 
+
+    &.disabled {
+        cursor: not-allowed;
+        color: $input-text-disabled-color;
+    }
+
     &:hover {
         border-color: $input-border-color-active;
         transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
@@ -22,5 +28,5 @@
     &::placeholder {
         color: $input-placeholder-color;
         opacity: 1; /* Firefox */
-      }
+    }
 }

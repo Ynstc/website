@@ -1,32 +1,45 @@
-@import './../configuration/variables';
+@import "./../configuration/variables";
 
 .container {
-    height: 100vh;
-    display: flex;
     align-items: center;
-    justify-content: center;
     background-color: $opacity-black-50;
-    position: fixed;
-    width: 100%;
-    position: fixed;
-    width: 100%;
-    top: 0;
+    display: flex;
+    justify-content: center;
     left: 0;
-  }
+    top: 0;
+    width: 100%;
 
-  .loader {
-    width: 120px;
-    height: 120px;
-    border-top: 4px solid $opacity-white-50;
-    border-radius: 50%;
+    &.small {
+        height: 100%;
+    }
+
+    &.fixed {
+        height: 100vh;
+        position: fixed;
+    }
+}
+
+.loader {
     animation: spin 0.8s linear infinite;
-  }
+    border-radius: 50%;
+    border-top: 2px solid $opacity-white-50;
 
-  @keyframes spin {
+    &.small {
+        height: 20px;
+        width: 20px;
+    }
+
+    &.fixed {
+        height: 120px;
+        width: 120px;
+    }
+}
+
+@keyframes spin {
     0% {
-      transform: rotate(0deg);
+        transform: rotate(0deg);
     }
     100% {
-      transform: rotate(360deg);
+        transform: rotate(360deg);
     }
-  }
+}
