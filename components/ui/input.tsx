@@ -14,7 +14,7 @@ interface PropsType {
     isDisabled?: boolean
 }
 
-const Input = ({ value, placeholder, onChange, onKeyDown, id, type= 'text', isDisabled }: PropsType) => {
+export const Input = ({ value, placeholder, onChange, onKeyDown, id, type= 'text', isDisabled }: PropsType) => {
 
     const _onChange = (e: ChangeEvent<HTMLInputElement>) => {
         if (onChange) onChange(e.target.value);
@@ -41,4 +41,3 @@ const Input = ({ value, placeholder, onChange, onKeyDown, id, type= 'text', isDi
     );
 };
 
-export default Input;

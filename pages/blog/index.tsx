@@ -2,16 +2,17 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import Head from 'next/head'
-import PostBlogList from 'components/postBlogList'
+
+import { PostBlogList } from 'components/postBlogList'
 import { sortByDate } from 'helpers'
-import { PostPageProps } from './[slug]'
+import { PostPageProps } from 'pages/blog/[slug]'
 
 
 interface BlogProps {
     posts: Array<PostPageProps>
 }
 
-export default function Blog({ posts }: BlogProps) {
+const Blog = ({ posts }: BlogProps) => {
     return (
         <div>
             <Head>
@@ -59,3 +60,6 @@ export async function getStaticProps() {
     }
 }
 
+Blog.auth = { authorized: false };
+
+export default Blog;

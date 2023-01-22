@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { AiOutlineUser } from 'react-icons/ai';
 import toast from "react-hot-toast";
+import Image from 'next/image';
 
 import { Database } from 'helpers/database.types'
-import styles from 'styles/components/avatar.module.scss'
 import Loader from 'components/ui/loader';
-import Image from 'next/image';
+import styles from 'styles/components/avatar.module.scss'
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
@@ -16,7 +16,7 @@ interface PropsType {
     onUpload: (url: string) => void
 }
 
-export default function Avatar({ uid, url, onUpload }: PropsType) {
+export const Avatar = ({ uid, url, onUpload }: PropsType) => {
     const supabase = useSupabaseClient<Database>()
     const [avatarUrl, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
     const [uploading, setUploading] = useState(false)

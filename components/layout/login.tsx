@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useUser, useSession, useSupabaseClient } from '@supabase/auth-helpers-react';
 import toast from "react-hot-toast";
-
-
 import Image from 'next/image';
-import Button from 'components/ui/button';
+
+
+import { Button } from 'components/ui/button';
 import { Database } from 'helpers/database.types';
-import { NavLink } from './navlink';
-import styles from 'styles/components/navbar.module.scss';
+import { NavLink } from 'components/layout/navlink';
 import { useAppStateContext } from 'state/AppState';
+import styles from 'styles/components/navbar.module.scss';
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
@@ -16,7 +16,7 @@ interface PropsType {
     closeMenu: () => void;
 }
 
-export default function Login({ closeMenu }: PropsType) {
+export const Login = ({ closeMenu }: PropsType) => {
     const [avatarUrl, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
     const supabase = useSupabaseClient()
     const session = useSession()

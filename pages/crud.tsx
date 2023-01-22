@@ -1,6 +1,6 @@
 import { NextPageWithAuth } from "helpers/generalInterfaces";
-import Todos from "components/todos";
-import AddTodo from "components/todos/Add";
+import { Todos } from "components/todos";
+import { AddTodo } from "components/todos/Add";
 
 
 const Crud: NextPageWithAuth = () => {

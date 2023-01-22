@@ -1,11 +1,11 @@
 import { Toaster } from "react-hot-toast";
 
-import Footer from "components/layout/footer";
-import Navbar from "components/layout/navbar";
+import { Footer } from "components/layout/footer";
+import { Navbar } from "components/layout/navbar";
 import styles from 'styles/components/layout.module.scss';
 
 
-const Layout = ({ children }: any) => {
+export const Layout = ({ children }: any) => {
     return (
         <div>
             <Navbar />
@@ -16,4 +16,3 @@ const Layout = ({ children }: any) => {
     );
 };
 
-export default Layout;

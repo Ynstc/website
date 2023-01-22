@@ -1,7 +1,7 @@
 import styles from 'styles/components/footer.module.scss';
 
 
-const Footer = () => {
+export const Footer = () => {
   return (
     <footer className={styles.footer}>
       Ernest Kost 2023
@@ -9,4 +9,3 @@ const Footer = () => {
   );
 };
 
-export default Footer;

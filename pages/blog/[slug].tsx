@@ -9,6 +9,7 @@ import remarkParse from 'remark-parse';
 import rehypeStringify from 'rehype-stringify';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight'
+
 import styles from '/Users/ernestkost/Desktop/projekty/moje/ernest_site/styles/slugBlog.module.scss'
 
 
@@ -18,11 +19,11 @@ export interface PostPageProps {
     contentHtml: string
 }
 
-export default function PostPage({
+const PostPage = ({
     frontmatter: { title, date, cover_image },
     slug,
     contentHtml
-}: PostPageProps) {
+}: PostPageProps) => {
 
     return (
         <>
@@ -98,3 +99,7 @@ export async function getStaticProps({ params: { slug } }: GetStaticPropsType) {
         },
     }
 }
+
+PostPage.auth = { authorized: false };
+
+export default PostPage;

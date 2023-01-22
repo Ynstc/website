@@ -1,16 +1,17 @@
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect } from 'react'
 import { useUser, useSupabaseClient, useSession } from '@supabase/auth-helpers-react'
 import toast from "react-hot-toast";
 import cx from "classnames";
 
-import Loader from "components/ui/loader";
 import { NextPageWithAuth } from "helpers/generalInterfaces";
-import Avatar from 'components/account/avatar'
+import { Avatar } from 'components/account/avatar'
 import { Database } from 'helpers/database.types'
-import styles from 'styles/account.module.scss';
-import Input from 'components/ui/input';
-import Button from 'components/ui/button';
+import { Input } from 'components/ui/input';
+import { Button } from 'components/ui/button';
 import { useAppStateContext } from 'state/AppState';
+import { DefaultBacgroundAccount } from 'public/defaultBacgroundAccount'
+import Loader from "components/ui/loader";
+import styles from 'styles/account.module.scss';
 
 type Profiles = Database['public']['Tables']['profiles']['Row']
 
@@ -23,7 +24,7 @@ const Account: NextPageWithAuth = () => {
     const [username, setUsername] = useState<Profiles['username']>(null)
     const [userAbout, setUserAbout] = useState<Profiles['user_about']>(null)
     const [avatar_url, setAvatarUrl] = useState<Profiles['avatar_url']>(null)
-    const {avatarState} = useAppStateContext();
+    const { avatarState } = useAppStateContext();
 
     useEffect(() => {
         getProfile()
@@ -79,7 +80,7 @@ const Account: NextPageWithAuth = () => {
 
             let { error } = await supabase.from('profiles').upsert(updates)
             if (error) throw error
-            if (avatar_url){
+            if (avatar_url) {
                 avatarState.triggerRefresh()
                 localStorage.setItem('__avatar', avatar_url);
             }
@@ -94,10 +95,9 @@ const Account: NextPageWithAuth = () => {
 
     return (
         <>
-            {user === null ? <Loader /> :
+            {user === null || loading ? <Loader /> :
                 <div className={styles.account}>
-                    <div className={styles.background}></div>
-
+                    <DefaultBacgroundAccount className={styles.background} />
                     <Avatar
                         uid={user.id}
                         url={avatar_url}
@@ -131,7 +131,7 @@ const Account: NextPageWithAuth = () => {
                         rows={6}
                     />
                     <div className={styles.button__wrapper}>
-                    {`${userAbout?.length?? 0}/300`}
+                        {`${userAbout?.length ?? 0}/300`}
                         <Button
                             className={cx('secondary', styles.button__submit)}
                             onClick={() => updateProfile({ username, userAbout, avatar_url })}

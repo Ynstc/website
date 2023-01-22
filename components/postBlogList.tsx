@@ -1,13 +1,14 @@
 import Link from 'next/link'
-import styles from 'styles/components/postItemList.module.scss';
-import { PostPageProps } from '../pages/blog/[slug]'
 import Image from 'next/image'
+
+import { PostPageProps } from 'pages/blog/[slug]'
+import styles from 'styles/components/postItemList.module.scss';
 
 
 interface PostProps {
     post: PostPageProps
 }
-export default function PostBlogList({ post }: PostProps) {
+export const PostBlogList = ({ post }: PostProps) => {
     return (
         <Link href={`/blog/${post.slug}`}>
             <div className={styles.postItemList}>

@@ -8,13 +8,13 @@ import toast from "react-hot-toast";
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 import { AiTwotoneDelete, AiOutlineForm } from 'react-icons/ai';
 
-import UpdateTodo from "components/todos/UpdateTodo";
-import Modal from "components/ui/modal";
+import { UpdateTodo } from "components/todos/UpdateTodo";
+import { Modal } from "components/ui/modal";
 import Loader from "components/ui/loader";
-import style from 'styles/components/todos.module.scss';
+import styles from 'styles/components/todos.module.scss';
 
 
-const Todos = () => {
+export const Todos = () => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
     const [selectedItem, setSelectedItem] = useState<{
         id: number;
@@ -80,17 +80,17 @@ const Todos = () => {
         <>
             {isLoading ? <Loader /> :
                 <>
-                    <div className={style.todoList}>
+                    <div className={styles.todoList}>
                         {
                             data ? data.map((todo: any) => (
-                                <div key={todo.id} className={style.todoList__item}>
-                                    <span className={style.todoList__itemName}>{todo.name}</span>
+                                <div key={todo.id} className={styles.todoList__item}>
+                                    <span className={styles.todoList__itemName}>{todo.name}</span>
                                     <AiTwotoneDelete
-                                        className={style.trashIcon}
+                                        className={styles.trashIcon}
                                         onClick={() => onDeleteItemClick(todo.id)}
                                     />
                                     <AiOutlineForm
-                                        className={style.editIcon}
+                                        className={styles.editIcon}
                                         onClick={() => onItemClick(todo)}
                                     />
                                 </div>
@@ -112,4 +112,3 @@ const Todos = () => {
     );
 };
 
-export default Todos;

@@ -3,7 +3,7 @@ import { useMutation, useQueryClient } from "react-query";
 import toast from "react-hot-toast";
 import { useSupabaseClient } from '@supabase/auth-helpers-react'
 
-import Input from 'components/ui/input';
+import { Input } from 'components/ui/input';
 
 interface PropTypes {
     todo: {
@@ -13,7 +13,7 @@ interface PropTypes {
     onClose: () => void;
 };
 
-const UpdateTodo = ({ todo, onClose }: PropTypes) => {
+export const UpdateTodo = ({ todo, onClose }: PropTypes) => {
     const [currentItem, setCurrentItem] = useState('');
     const supabaseClient = useSupabaseClient();
 
@@ -68,5 +68,3 @@ const UpdateTodo = ({ todo, onClose }: PropTypes) => {
         </div>
     );
 };
-
-export default UpdateTodo;

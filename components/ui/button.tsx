@@ -14,7 +14,7 @@ interface PropsType {
  * 'primary', 'secondary' and default basic
  *
  */
-const Button = ({ children, className = '', onClick, isDisabled = false }: PropsType) => {
+export const Button = ({ children, className = '', onClick, isDisabled = false }: PropsType) => {
 
     const buttonTypeClass = className.split(' ').map((item) => {
         if (item === 'primary' || item === 'secondary') {
@@ -36,4 +36,3 @@ const Button = ({ children, className = '', onClick, isDisabled = false }: Props
     );
 };
 
-export default Button;

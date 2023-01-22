@@ -2,7 +2,8 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Auth, ThemeSupa } from '@supabase/auth-ui-react'
 import { useSessionContext, useSupabaseClient } from '@supabase/auth-helpers-react'
-import { NextPageWithAuth } from "../helpers/generalInterfaces";
+
+import { NextPageWithAuth } from 'helpers/generalInterfaces';
 import styles from 'styles/sign-in.module.scss';
 
 

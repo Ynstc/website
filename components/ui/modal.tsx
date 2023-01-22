@@ -8,7 +8,7 @@ type PropsType = React.PropsWithChildren & {
     setModalOpen: () => void;
 };
 
-export default function Modal({ isModalOpen, setModalOpen, children }: PropsType) {
+export const Modal = ({ isModalOpen, setModalOpen, children }: PropsType) => {
 
     return (
         <div className={styles.modal}>

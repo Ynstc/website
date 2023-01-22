@@ -4,13 +4,13 @@ import Head from "next/head";
 import cx from "classnames";
 
 import { NavLink } from 'components/layout/navlink';
+import { Login } from 'components/layout/login'
 import styles from 'styles/components/navbar.module.scss';
-import Login from 'components/layout/login'
 
 
 
 
-const Navbar = () => {
+export const Navbar = () => {
     const [menuOpen, setMenuOpen] = useState<boolean>(false)
     const session = useSession()
 
@@ -35,6 +35,7 @@ const Navbar = () => {
                         <span className="material-icons">menu</span>
                     </button>
                     <h1 className={styles.navbar__title}>Do your job.</h1>
+
                     <nav className={cx(styles.navbar__menu, { [styles.open]: menuOpen })} >
                         <NavLink activeClassName={styles.active} href="/" onClick={closeMenu}>
                             <button className={styles.navbar__button}>Home</button>
@@ -42,6 +43,7 @@ const Navbar = () => {
                         <NavLink activeClassName={styles.active} href="/blog" onClick={closeMenu}>
                             <button className={styles.navbar__button}>Blog Post</button>
                         </NavLink>
+
                         {session === null ?
                             null : (<>
                                 <NavLink activeClassName={styles.active} href="/crud" onClick={closeMenu}>
@@ -59,4 +61,3 @@ const Navbar = () => {
     );
 };
 
-export default Navbar;
